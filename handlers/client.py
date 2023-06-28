@@ -1,10 +1,11 @@
 from aiogram import types, Dispatcher
 from create_bot import dp, bot
+from keyboard import kb_client
 
 #@dp.message_handler(commands=['start', 'help'])
 async def command_start(message: types.Message):
     try:
-        await bot.send_message(message.from_user.id, 'Any text')
+        await bot.send_message(message.from_user.id, 'Hi', reply_markup=kb_client)
         await message.delete()
     except Exception as e:
         await message.reply('Any text')
@@ -15,5 +16,5 @@ async def wishery_info(message : types.Message):
 
 def register_handlers_client(dp : Dispatcher):
     dp.register_message_handler(command_start, commands=['start', 'help'])
-    dp.register_message_handler(wishery_info, commands=['about'])
+    dp.register_message_handler(wishery_info, commands=['About'])
     #dp.register_message_handler()
